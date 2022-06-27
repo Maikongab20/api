@@ -11,7 +11,7 @@ class ControllerEmployeer {
     const { name, email, password } = request.body;
     const service = new ServiceEmployeer();
 
-    const employeer = service.CreateEmployeer({
+    const employeer = await service.CreateEmployeer({
       name,
       email,
       password

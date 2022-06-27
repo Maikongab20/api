@@ -11,8 +11,35 @@ datasource db {
 }
 
 model employeer {
-  id       String @id
-  name     String @unique
+  id       String    @id
+  name     String    @unique
   email    String
   password String
+  product  product[]
+}
+
+model type {
+  id          String        @id
+  name        String        @unique
+  typeProduct typeProduct[]
+}
+
+model typeProduct {
+  id        String  @id
+  typeId    String
+  productId String
+  type      type    @relation(fields: [typeId], references: [id])
+  product   product @relation(fields: [productId], references: [id])
+
+}
+
+model product {
+  id          String        @id
+  name        String
+  barcode     String
+  price       Float
+  desciption  String
+  employeer   employeer     @relation(fields: [employeerId], references: [id])
+  employeerId String
+  typeProduct typeProduct[]
 }
