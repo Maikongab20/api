@@ -5,13 +5,13 @@ interface RequestProduct {
   name: string;
   barcode: string;
   price: number;
-  description: string;
+  desciption: string;
   typeID: string;
   employeerId: string;
 }
 
 class ServiceProduct {
-  async CreateProduct({ name, barcode, price, description, typeID, employeerId }: RequestProduct) {
+  async CreateProduct({ name, barcode, price, desciption, typeID, employeerId }: RequestProduct) {
 
     const nameAlreadyExists = await prisma.product.findFirst({
       where: {
@@ -26,13 +26,18 @@ class ServiceProduct {
     const product = await prisma.typeProduct.create({
       data: {
         id: uuid(),
+        type: {
+          connect: {
+            id: typeID
+          }
+        },
         product: {
           create: {
             id: uuid(),
             name,
             barcode,
             price,
-            description,
+            desciption,
             employeer: {
               connect: {
                 id: employeerId
@@ -41,7 +46,7 @@ class ServiceProduct {
           }
         }
       }
-    })
+    });
 
     return { product }
   }

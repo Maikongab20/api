@@ -1,6 +1,9 @@
 import "express-async-errors";
 import express, { NextFunction, Request, Response } from "express";
-import { router } from "./router"
+import { router } from "./routes"
+import "dotenv";
+
+
 const app = express();
 
 app.use(express.json());
