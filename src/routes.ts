@@ -10,9 +10,12 @@ const createType = new ControllerType();
 const createProduct = new ControllerProduct();
 const authenticateLogin = new ControllerLogin();
 
+//create
 router.post('/create', createEmployeer.ControllerCreateEmployeer);
 router.post('/createType', createType.CreateTypeController);
 router.post('/createProduct', createProduct.CreateProductController);
+
+/// authenticate
 router.get('/login', authenticateLogin.CreateLogin);
 
 export { router }
